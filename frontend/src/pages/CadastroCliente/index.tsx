@@ -1,6 +1,6 @@
 import Footer from "assets/components/Footer";
 import NavBar from "assets/components/NavBar/index";
-import Form from "assets/components/Form/index";
+import Form from "assets/components/Form/FormCliente/index";
 
 const CadastroCliente = () => {
   return (
