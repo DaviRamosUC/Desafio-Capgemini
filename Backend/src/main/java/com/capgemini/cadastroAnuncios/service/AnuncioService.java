@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.cadastroAnuncios.domain.Anuncio;
@@ -66,6 +68,12 @@ public class AnuncioService {
 			list.add(new AnuncioDTO(anuncio));
 		}
 		return list;
+	}
+	
+	public Page<Anuncio> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage,
+				org.springframework.data.domain.Sort.Direction.valueOf(direction), orderBy);
+		return anuncioRepository.findAll(pageRequest);
 	}
 
 	public List<AnuncioDTO> findByDataInicioBetweenAndCliente(String start, String end, Cliente cliente) {
