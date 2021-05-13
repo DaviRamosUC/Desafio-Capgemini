@@ -8,7 +8,7 @@ const Dashboard = () => {
       <NavBar />
       <div className="container">
         <div className="py-4">
-          <h2 className="text-primary">Todas as Vendas</h2>
+          <h2 className="text-primary">Todos os anuncios</h2>
         </div>
         <DataTable />
       </div>

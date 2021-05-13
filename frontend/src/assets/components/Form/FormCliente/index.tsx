@@ -1,14 +1,42 @@
+import axios from "axios";
+import { BASE_URL } from "assets/utils/requests";
+
 const formu = () => {
+  const gerarCliente = () => {
+    
+    var nomeField =(document.getElementById("name")as HTMLInputElement).value;
+    var emailField =(document.getElementById("email")as HTMLInputElement).value;
+    var cpfOuCnpjField =(document.getElementById("CpfouCnpj")as HTMLInputElement).value;
+    var tipoField = (document.getElementById("tipo")as HTMLInputElement).value;
+    
+    axios
+      .post(`${BASE_URL}/clientes`, {
+        nome: `${nomeField}`,
+        email: `${emailField}`,
+        cpfOuCnpj: `${cpfOuCnpjField}`,
+        tipo: `${tipoField}`,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+
   return (
     <>
-      <form>
+      <form id="formulario" onSubmit={gerarCliente}>
         <div className="mb-3">
           <label htmlFor="exampleInputName" className="form-label">
             Nome ou Nome Fantasia
           </label>
           <input
+            type="text"
             className="form-control"
-            id="exampleInputName"
+            id="name"
             aria-describedby="nameHelp"
           />
           <div id="nameHelp" className="form-text">
@@ -23,7 +51,7 @@ const formu = () => {
           <input
             type="email"
             className="form-control"
-            id="exampleInputEmail1"
+            id="email"
             aria-describedby="emailHelp"
           />
           <div id="emailHelp" className="form-text">
@@ -35,10 +63,9 @@ const formu = () => {
           <label htmlFor="tipoCliente" className="form-label">
             Tipo de cliente
           </label>
-          <select className="form-select" id="tipoCliente" required>
-            <option value="">selecione uma opção</option>
-            <option>Pessoa jurídica</option>
-            <option>Pessoa Fisica</option>
+          <select className="form-select" id="tipo" required>
+            <option value="1">Pessoa Fisica</option>
+            <option value="2">Pessoa jurídica</option>
           </select>
           <div className="invalid-feedback">
             Por favor selecione uma opção válida
@@ -49,20 +76,16 @@ const formu = () => {
           <label htmlFor="exampleInputCpfouCnpj" className="form-label">
             CPF ou CNPJ
           </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputCpfouCnpj"
-          />
+          <input type="text" className="form-control" id="CpfouCnpj" />
           <div id="emailHelp" className="form-text">
             informe o CPF ou CNPJ
           </div>
         </div>
 
         <div className="mb-3">
-        <button type="submit" className="btn btn-primary">
-          Enviar
-        </button>
+          <button type="submit" className="btn btn-primary">
+            Enviar
+          </button>
         </div>
       </form>
     </>
