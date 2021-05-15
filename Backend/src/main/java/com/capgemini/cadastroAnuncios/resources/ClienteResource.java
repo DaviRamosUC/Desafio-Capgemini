@@ -1,6 +1,7 @@
 package com.capgemini.cadastroAnuncios.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,12 @@ public class ClienteResource {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@RequestMapping(value = "/findall",method = RequestMethod.GET)
+	public ResponseEntity<List<Cliente>> findAll(){
+		List<Cliente> clientes = clienteService.findAll();
+		return ResponseEntity.ok().body(clientes);
+	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<ClienteDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,

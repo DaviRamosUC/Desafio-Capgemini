@@ -1,10 +1,27 @@
-export const gerarCliente = () => {
-    var form = document.getElementById('formulario');
-    var nome = (document.getElementById('name') as HTMLInputElement).value;
-    var email = (document.getElementById('email') as HTMLInputElement).value
-    var cpfOuCnpj = (document.getElementById('cpfOuCnpj') as HTMLInputElement).value
-    var tipo = (document.getElementById('tipo') as HTMLInputElement).value
+import axios from "axios";
+import { BASE_URL } from "assets/utils/requests";
 
-    console.log(nome, email, cpfOuCnpj, tipo);
-}
+export const gerarCliente = () => {
+
+    var nomeField = (document.getElementById("name") as HTMLInputElement).value;
+    var emailField = (document.getElementById("email") as HTMLInputElement).value;
+    var cpfOuCnpjField = (document.getElementById("CpfouCnpj") as HTMLInputElement).value;
+    var tipoField = (document.getElementById("tipo") as HTMLInputElement).value;
+
+    axios
+        .post(`${BASE_URL}/clientes`, {
+            nome: `${nomeField}`,
+            email: `${emailField}`,
+            cpfOuCnpj: `${cpfOuCnpjField}`,
+            tipo: `${tipoField}`,
+        })
+        .then(
+            (response) => {
+                console.log(response);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+};
 
