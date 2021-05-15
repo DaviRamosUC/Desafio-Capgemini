@@ -20,10 +20,9 @@ const Routes = () => {
         <Route path="/Dashboard">
           <Dashboard />
         </Route>
-
       </Switch>
     </BrowserRouter>
-  )
-}
+  );
+};
 
 export default Routes;

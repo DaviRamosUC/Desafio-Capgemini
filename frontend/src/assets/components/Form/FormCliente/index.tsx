@@ -4,7 +4,7 @@ const formu = () => {
   return (
     <>
       <form action = "/" onSubmit={gerarCliente}>
-        <div className="mb-3">
+        <div className="mb-3 col-6">
           <label htmlFor="exampleInputName" className="form-label">
             Nome ou Nome Fantasia
           </label>
@@ -19,7 +19,7 @@ const formu = () => {
           </div>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 col-6">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Endereço de Email
           </label>
@@ -34,7 +34,7 @@ const formu = () => {
           </div>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 col-6">
           <label htmlFor="tipoCliente" className="form-label">
             Tipo de cliente
           </label>
@@ -47,7 +47,7 @@ const formu = () => {
           </div>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 col-6">
           <label htmlFor="exampleInputCpfouCnpj" className="form-label">
             CPF ou CNPJ
           </label>

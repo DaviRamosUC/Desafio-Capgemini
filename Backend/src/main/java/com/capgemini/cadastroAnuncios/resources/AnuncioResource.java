@@ -56,7 +56,7 @@ public class AnuncioResource {
 			@RequestParam(value = "datainicio", defaultValue = "") String dataInicio,
 			@RequestParam(value = "datafim", defaultValue = "") String dataFim) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateDefault = new Date();
 		List<AnuncioDTO> list = null;
 		if (dataFim.equals("")) {

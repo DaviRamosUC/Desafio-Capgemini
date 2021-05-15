@@ -56,7 +56,7 @@ const Formu = () => {
   return (
     <>
       <form onSubmit={gerarAnuncio}>
-        <div className="mb-3">
+        <div className="mb-3 col-6">
           <label htmlFor="exampleInputNameAnuncio" className="form-label">
             Nome do anuncio
           </label>
@@ -70,25 +70,25 @@ const Formu = () => {
           </div>
         </div>
 
-        <div className="form-inline mb-3">
-          <label htmlFor="example-date-input" className="col-2 col-form-label">
-            Data de início
+        <div className="col-6 form-group mb-2">
+          <label className="form-check-label" htmlFor="dt_in">
+            <b>Data Inicial </b>
           </label>
           <div className="col-10">
             <input className="form-control" type="date" id=" dataInicio" />
           </div>
         </div>
 
-        <div className="form-inline mb-3">
-          <label htmlFor="example-date-input" className="col-2 col-form-label">
-            Data de término
+        <div className="col-6 form-group mb-2">
+          <label className="form-check-label" htmlFor="dt_in">
+            <b>Data Termino: </b>
           </label>
           <div className="col-10">
             <input className="form-control" type="date" id="dataTermino" />
           </div>
         </div>
 
-        <div className="mb-3">
+        <div className="col-6 mb-3">
           <label htmlFor="exampleInputInvestimento" className="form-label">
             Investimento diário
           </label>
@@ -106,17 +106,16 @@ const Formu = () => {
           </div>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 col-6">
           <label htmlFor="tipoCliente" className="form-label">
             Cliente
           </label>
           <select className="form-select" id="cliente" required>
             <option value="">Secione uma opção</option>
-            {page.content?.map((item) => 
-              <option value = {item.id}>{item.nome}</option>
-            )}
+            {page.content?.map((item) => (
+              <option value={item.id}>{item.nome}</option>
+            ))}
           </select>
-
           <div className="invalid-feedback">
             Por favor selecione uma opção válida
           </div>

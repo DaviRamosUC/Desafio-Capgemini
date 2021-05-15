@@ -52,7 +52,7 @@ public class AnuncioService {
 	}
 	
 	public List<AnuncioDTO> findByDataInicioBetween(String start, String end){
-		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date inicio = null;
 		Date fim = null;
 		try {
@@ -77,7 +77,7 @@ public class AnuncioService {
 	}
 
 	public List<AnuncioDTO> findByDataInicioBetweenAndCliente(String start, String end, Cliente cliente) {
-		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date inicio = null;
 		Date fim = null;
 		try {
