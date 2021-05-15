@@ -1,6 +1,5 @@
 import axios from "axios";
 import { BASE_URL } from "assets/utils/requests";
-import CarregarClientes from "assets/utils/optionCliente";
 import { useEffect, useState } from "react";
 import { clientePage } from "types/cliente";
 
@@ -16,8 +15,8 @@ const Formu = () => {
     var investimentoDiaField = (
       document.getElementById("investimentoDia") as HTMLInputElement
     ).value.replace(",", ".");
-     var clienteField = (document.getElementById("cliente") as HTMLInputElement)
-     .value;
+    var clienteField = (document.getElementById("cliente") as HTMLInputElement)
+      .value;
 
     axios
       .post(`${BASE_URL}/anuncios`, {
@@ -53,8 +52,6 @@ const Formu = () => {
         setPage(response.data);
       });
   }, [activePage]);
-
-  page.content?.map((item) => CarregarClientes(item.id, item.nome));
 
   return (
     <>
@@ -113,10 +110,13 @@ const Formu = () => {
           <label htmlFor="tipoCliente" className="form-label">
             Cliente
           </label>
-          <select className="form-select col" id="cliente" required>
-          <option value="">Secione uma opção</option>
+          <select className="form-select" id="cliente" required>
+            <option value="">Secione uma opção</option>
+            {page.content?.map((item) => 
+              <option value = {item.id}>{item.nome}</option>
+            )}
           </select>
-          
+
           <div className="invalid-feedback">
             Por favor selecione uma opção válida
           </div>

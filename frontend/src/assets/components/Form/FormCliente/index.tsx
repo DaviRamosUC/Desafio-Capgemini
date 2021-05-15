@@ -3,7 +3,7 @@ import {gerarCliente} from "assets/utils/clienteUtil"
 const formu = () => {
   return (
     <>
-      <form onSubmit={gerarCliente}>
+      <form action = "/" onSubmit={gerarCliente}>
         <div className="mb-3">
           <label htmlFor="exampleInputName" className="form-label">
             Nome ou Nome Fantasia
