@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -40,18 +41,19 @@ public class AnuncioService {
 		return anuncioRepository.save(obj);
 	}
 
-	public List<AnuncioDTO> findByCliente(Integer id) {
+	public Page<AnuncioDTO> findByCliente(Integer id) {
 		Cliente cliente = clienteService.findById(id);
 		List<Anuncio> a = anuncioRepository.findByCliente(cliente);
 		List<AnuncioDTO> list = new ArrayList<>();
 		for (Anuncio anuncio : a) {
 			list.add(new AnuncioDTO(anuncio));
 		}
+		Page<AnuncioDTO> pageAnuncio = new PageImpl<>(list);
 
-		return list;
+		return pageAnuncio;
 	}
-	
-	public List<AnuncioDTO> findByDataInicioBetween(String start, String end){
+
+	public Page<AnuncioDTO> findByDataInicioBetween(String start, String end) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date inicio = null;
 		Date fim = null;
@@ -61,22 +63,25 @@ public class AnuncioService {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		List<Anuncio> a = anuncioRepository.findByDataInicioBetween(inicio, fim);
 		List<AnuncioDTO> list = new ArrayList<>();
 		for (Anuncio anuncio : a) {
 			list.add(new AnuncioDTO(anuncio));
 		}
-		return list;
+
+		Page<AnuncioDTO> pageAnuncio = new PageImpl<>(list);
+
+		return pageAnuncio;
 	}
-	
+
 	public Page<Anuncio> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,
 				org.springframework.data.domain.Sort.Direction.valueOf(direction), orderBy);
 		return anuncioRepository.findAll(pageRequest);
 	}
 
-	public List<AnuncioDTO> findByDataInicioBetweenAndCliente(String start, String end, Cliente cliente) {
+	public Page<AnuncioDTO> findByDataInicioBetweenAndCliente(String start, String end, Cliente cliente) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date inicio = null;
 		Date fim = null;
@@ -93,7 +98,9 @@ public class AnuncioService {
 			list.add(new AnuncioDTO(anuncio));
 		}
 
-		return list;
+		Page<AnuncioDTO> pageAnuncio = new PageImpl<>(list);
+
+		return pageAnuncio;
 	}
 
 }

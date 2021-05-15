@@ -9,8 +9,17 @@ export type Anuncio = {
   cliente: cliente;
 }
 
+export type AnuncioDTO = {
+  id: number;
+  nome:string;
+  valorTotalInvetido: number;
+  qtdMaxVisualizacao: number;
+  qtdMaxCliques: number;
+  qtdMaxCompartilhamentos: number;
+}
+
 export type AnuncioPage = {
-  content?: Anuncio[];
+  content?: AnuncioDTO[];
   last: boolean;
   totalElements: number;
   totalPages: number;

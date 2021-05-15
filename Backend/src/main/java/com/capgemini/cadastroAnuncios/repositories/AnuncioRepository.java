@@ -18,6 +18,7 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
 	
 	@Transactional(readOnly=true)
 	List<Anuncio> findByDataInicioBetweenAndCliente(Date start, Date end,Cliente cliente);
+
 	
 	@Transactional(readOnly=true)
 	List<Anuncio> findByDataInicioBetween(Date start, Date end);

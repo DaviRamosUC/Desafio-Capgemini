@@ -1,5 +1,7 @@
-import { formatLocalDate } from "assets/utils/format";
 import { BASE_URL } from "assets/utils/requests";
+import { idcliente } from "assets/utils/requests";
+import { datainicio } from "assets/utils/requests";
+import { datafim } from "assets/utils/requests";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { AnuncioPage } from "types/anuncio";
@@ -17,7 +19,7 @@ const DataTable = () => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/anuncios/pages?page=${activePage}&size=20`)
+      .get(`${BASE_URL}/anuncios?page=${activePage}&idcliente=${idcliente}&datainicio=${datainicio}&datafim=${datafim}`)
       .then((response) => {
         setPage(response.data);
       });
@@ -36,26 +38,20 @@ const DataTable = () => {
           <thead>
             <tr>
               <th>Nome anuncio</th>
-              <th>Data Início</th>
-              <th>Data Término</th>
-              <th>Valor investido</th>
-              <th>Cliente</th>
-              <th></th>
+              <th>Total investido</th>
+              <th>Q. Máxima de visualizações</th>
+              <th>Q. Máxima de cliques</th>
+              <th>Q. Máxima de Compartilhamentos</th>
             </tr>
           </thead>
           <tbody>
             {page.content?.map((item) => (
               <tr key={item.id}>
                 <td>{item.nome}</td>
-                <td>{formatLocalDate(item.dataInicio, "dd/MM/yyyy")}</td>
-                <td>{formatLocalDate(item.dataTermino, "dd/MM/yyyy")}</td>
-                <td>{item.investimentoDia.toFixed(2)}</td>
-                <td>{item.cliente.nome}</td>
-                <td>
-                  <button type="button" className="btn btn-primary">
-                    Exibir
-                  </button>
-                </td>
+                <td>{item.valorTotalInvetido}</td>                
+                <td>{item.qtdMaxVisualizacao}</td>                
+                <td>{item.qtdMaxCliques}</td>                
+                <td>{item.qtdMaxCompartilhamentos}</td>                
               </tr>
             ))}
           </tbody>
