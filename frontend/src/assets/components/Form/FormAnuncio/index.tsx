@@ -55,7 +55,7 @@ const Formu = () => {
 
   return (
     <>
-      <form onSubmit={gerarAnuncio}>
+      <form action = "/" onSubmit={gerarAnuncio}>
         <div className="mb-3 col-6">
           <label htmlFor="exampleInputNameAnuncio" className="form-label">
             Nome do anuncio
