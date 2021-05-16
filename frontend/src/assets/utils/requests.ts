@@ -1,5 +1,5 @@
 
-export const BASE_URL = 'https://cadastro-anuncio.herokuapp.com/';
+export const BASE_URL = 'http://localhost:8080';
 export var idcliente= '0';
 export var datainicio='';
 export var datafim='';
